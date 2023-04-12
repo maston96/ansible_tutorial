@@ -7,3 +7,8 @@
 
 [file_servers]
 172.31.90.229 
+
+[workstations]
+172.31.90.229
+
+

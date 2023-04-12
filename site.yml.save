@@ -18,23 +18,8 @@
       upgrade: dist
       update_cache: yes
     when: ansible_distribution == "Ubuntu"
-
-- hosts: workstations
-  become: true
-  tasks:
-
-  - name: install unzip
-    package:
-      name: unzip
-  - name: install terraform
-    unarchive:
-      src: https://releases.hashicorp.com/terraform/1.4.5/terraform_1.4.5_linux_amd64.zip
-      dest: /usr/local/bin
-      remote_src: yes
-      mode: 0755
-      owner: root
-      group: root
-
+- hosts: worstations
+  becomecsdsfvsflfs;lfm
 - hosts: web_servers
   become: true
   tasks:
@@ -65,14 +50,7 @@
       state: latest
     when: ansible_distribution == "CentOS"
 
-  - name: start httpd (CentOS)
-    tags: apache,centos,httpd
-    service:
-      name: httpd
-      state: started
-      enabled: yes
 
-    when: ansible_distribution == "CentOS"
 - hosts: db_servers
   become: true
   tasks:
