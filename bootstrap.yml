@@ -1,0 +1,44 @@
+---
+
+- hosts: all 
+  become: true
+  tasks:
+  
+  - name: install updates (CentOS)
+    tags: always
+    dnf:
+      update_only: yes
+      update_cache: yes
+    when: ansible_distribution == "CentOS"
+
+
+  - name: install updates (Ubuntu)
+    tags: always
+    apt:
+      upgrade: dist
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
+
+- hosts: all
+  become: true
+  tasks:
+  
+  - name: create yannick user
+    tags: always
+    user:
+      name: yannick
+      groups: root
+
+  - name: add ssh key
+    tags: always
+    authorized_key:
+      user: yannick
+      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC1NCgGNNOAer0W7y8Cp7kyPYA/8CCugjHA8XuZJVrtnvwR6R/TdafVJg2HmPMwO7McRxn6DsLzBj4JBCqrARnNjBOTE0PCCV9KK2sJ8WnWGJP1ytOCgqXiD3qL4bg/PapQXNWXYd8OnPQl9qmVDome1jFuiQBK1FiLTwsTaJ3C+tbFdQCD2dG2APESUMhKJzZ/bgl6bDlO3Jfj4OklYcA4hZeHMQhZxszU/o8HALdF+637aExJOmBD5TxzRVXpmIW9D/s4VgBwjXOhiSnFN2im+ifShn9DOk+X0S47GpFibxMze6NE9hIgclr/gXIT+HX6N1DJQpB8Yi79W0PmSusN A4L"
+  - name: add sudoers file for yannick
+    tags: always
+    copy:
+      src: sudoer_yannick
+      dest: /etc/sudoers.d/yannick
+      owner: root
+      group: root
+      mode: 0440
