@@ -1,0 +1,7 @@
+ - name: add ssh key
+   authorized_key:
+     user: yannick
+     key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC1NCgGNNOAer0W7y8Cp7kyPYA/8CCugjHA8XuZJVrtnvwR6R/TdafVJg2HmPMwO7McRxn6DsLzBj4JBCqrARnNjBOTE0PCCV9KK2sJ8WnWGJP1ytOCgqXiD3qL4bg/PapQX>"
+
+
+
